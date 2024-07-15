@@ -3,10 +3,10 @@ import Bucket from "../models/bucket"
 import ConversationFile from '../models/file';
 
 export default class MinioService {
-    minioClient: Client;
+    minio_client: Client;
 
     constructor() {
-        this.minioClient = new Client({
+        this.minio_client = new Client({
             endPoint: 's3',
             port: 9000,
             useSSL: false,
@@ -16,12 +16,12 @@ export default class MinioService {
     }
 
     async get_buckets() {
-        return (await this.minioClient.listBuckets() ).map((bucket:any) => new Bucket(bucket))
+        return (await this.minio_client.listBuckets() ).map((bucket:any) => new Bucket(bucket))
     }
 
     async get_files_from_bucket(bucket_name: string): Promise<ConversationFile[]> {
         const promise = new Promise<ConversationFile[]>((reject,resolve) => {
-            const stream = this.minioClient.listObjects(bucket_name)
+            const stream = this.minio_client.listObjects(bucket_name)
             const files: BucketItem[] = []
 
             stream.on("data", (obj) => {
@@ -33,6 +33,12 @@ export default class MinioService {
             stream.on("error", reject)
         })
         return promise;
+    }
+
+    async download_pdf(file_id: string) {
+        "use server"
+        console.log(`DOWNLOAD FILE_ID: ${file_id}`)
+        return this.minio_client.getObject("metrics", file_id)
     }
 
 }

@@ -1,6 +1,7 @@
+import ConversationFile from "./file";
 
 export default class Bucket {
-    name: String;
+    name: string;
     creationDate: Date = new Date();
     objects: ConversationFile[];
 
