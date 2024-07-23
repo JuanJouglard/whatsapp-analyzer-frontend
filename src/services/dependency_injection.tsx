@@ -1,19 +1,20 @@
-import MinioService from "./minio"
+import { InjectableService } from "."
+import InteractService from "./interact"
 
 type ServiceType = {
     name: string,
-    Class: typeof MinioService
+    Class: new (...args: any[]) => InjectableService
 }
 
 const services: ServiceType[] = [
     {
-        "name": "minio",
-        "Class": MinioService
+        "name": "interact",
+        "Class": InteractService
     }
 ]
 
 export type ServiceProps = {
-    minio: Readonly<MinioService>
+    interact?: Readonly<InteractService>
 }
 
 

@@ -1,15 +1,14 @@
+import { InjectableService } from "."
+import { Message } from "../models/message"
+import Singleton from "./singleton"
 
-export class Interact {
-    _instance: Interact
+@Singleton
+export default class InteractService implements InjectableService {
 
-    constructor() {
 
-    }
-
-    static getInstance() {
-        if !(this._instance) {
-            this._instance = new Interact()
-        }
-        return this._instance
+    sendQuery(text: string): Message {
+        console.log("TEXT: ", text)
+        return null
     }
 }
+
