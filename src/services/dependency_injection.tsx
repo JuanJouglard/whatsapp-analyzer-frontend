@@ -1,5 +1,6 @@
 import { InjectableService } from "."
 import InteractService from "./interact"
+import MessageValidation from "./message_validation"
 
 type ServiceType = {
     name: string,
@@ -10,11 +11,16 @@ const services: ServiceType[] = [
     {
         "name": "interact",
         "Class": InteractService
+    },
+    {
+        "name": "message_validation",
+        "Class": MessageValidation
     }
 ]
 
 export type ServiceProps = {
-    interact?: Readonly<InteractService>
+    interact?: Readonly<InteractService>,
+    message_validation?: Readonly<MessageValidation>
 }
 
 
