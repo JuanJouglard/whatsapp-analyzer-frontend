@@ -3,29 +3,35 @@ import { withService, ServiceProps } from "../../services";
 import { useList } from "../../hooks/useList";
 import { Message } from "../../models/message";
 import MessageBubble from "./message";
-import { useState } from "react";
+import { useState, Suspense } from "react";
+import { LoadingMessage } from "../../shared";
 
 
 
-function Chat({interact}: ServiceProps) {
+function Chat({interact, message_validation}: ServiceProps) {
     const [ messages, addMessage ] = useList<Message>([])
     const [text, setText] = useState("")
 
-    const onEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        console.log("EVENT: ", event)
-        if (event.key == "Enter") {
-            addMessage({ text , id: "2", date: new Date()})
+    const onEnter = async (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key == "Enter" && message_validation?.validate_user_message(text)) {
+            addMessage({ text , id: "2", date: new Date(), response: interact?.sendQuery(text)})
             setText("")
         }
     }
 
-    console.log("Messages: ", messages)
     return <div className="chat-container">
-            <ul className="message-list">
-                {messages.map(( message:Message, index:number ) => <MessageBubble text={message.text} key={message.id} fromUser={index % 2 == 0} />)}
+            <ul className="message-list" aria-label="message-list">
+                {messages.map(( message:Message ) => <>
+                                  <MessageBubble message={message} />
+                                    <Suspense fallback={<LoadingMessage />}>
+                                      <MessageBubble is_response={true} message={message} />
+                                     </Suspense>
+                              </>)}
             </ul>
             <input
+                id="query-input"
                 type="text"
+                aria-label="query-input"
                 value={text}
                 onChange={(event) => setText(event.target.value)}
                 onKeyDown={onEnter}
@@ -33,4 +39,4 @@ function Chat({interact}: ServiceProps) {
         </div>
 }
 
-export default withService(Chat, ["interact"])
+export default withService(Chat, ["interact", "message_validation"])
