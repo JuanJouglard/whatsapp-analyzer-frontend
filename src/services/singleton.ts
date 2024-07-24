@@ -6,7 +6,6 @@ export default function Singleton<T extends new (...args: any[]) => any>(ctr: T)
         constructor(...args: any[]) {
 
             if (instance) {
-                console.error('You cannot instantiate a singleton twice!');
                 return instance;
             }
 
