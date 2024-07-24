@@ -1,9 +1,12 @@
+import { Message } from "../../models/message"
 
-type MessagePropTypes = {
-    text: string,
-    fromUser: boolean
-}
 
-export default function MessageBubble({ text, fromUser }: MessagePropTypes) {
-    return <li className={`message ${ fromUser ? "from-user" : "from-model" }`}>{text}</li>
+export default function MessageBubble({ message: { text, id, date, response }, is_response = false }: { message: Message, is_response?: boolean }) {
+    let rendered_text;
+    if (is_response)
+        rendered_text = response?.read().text
+    else
+        rendered_text = text
+
+    return <li key={id} className={ `message ${ is_response ? "from-model" : "from-user" }` }>{rendered_text}</li>
 }
