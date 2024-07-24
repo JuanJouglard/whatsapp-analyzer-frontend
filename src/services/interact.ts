@@ -6,9 +6,13 @@ import Singleton from "./singleton"
 export default class InteractService implements InjectableService {
 
 
-    sendQuery(text: string): Message {
+    sendQuery(text: string): Promise<Message> {
         console.log("TEXT: ", text)
-        return null
+        return Promise.resolve({
+            "text": "Response from model",
+            "id": Math.random() * 100 + "",
+            "date": new Date()
+        })
     }
 }
 
