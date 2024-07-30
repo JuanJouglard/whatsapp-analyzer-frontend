@@ -36,17 +36,63 @@
     margin-top: 1.5rem;
     width: 70%;
     border-radius: 5%;
+
+    > p {
+        margin: 0;
+        font-weight: bold;
+    }
+
     &.from-user {
-        background-color: #25D366;
         align-self: flex-start;
-        border-radius: 1rem 1rem 1rem 0px / 1rem 1rem 1rem 0px;
+
+        > p {
+            padding: 0.5rem 1rem;
+            background-color: #25D366;
+            border-radius: 1rem 1rem 1rem 0px / 1rem 1rem 1rem 0px;
+        }
     }
 
     &.from-model {
-        background-color: #075E54;
-        color: white;
         align-self: flex-end;
         text-align: right;
-        border-radius: 1rem 1rem 0px 1rem / 1rem 1rem 0px 1rem;
+        > p {
+            padding: 0.5rem 1rem;
+            background-color: #075E54;
+            color: white;
+            border-radius: 1rem 1rem 0px 1rem / 1rem 1rem 0px 1rem;
+        }
+    }
+
+    > label {
+        color: gray;
+        font-size: 0.7rem;
+        font-weight: bold;
+    }
+}
+
+.upload-form {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    justify-content: stretch;
+
+    & > label {
+        display: flex;
+        align-items: center;
+        color: black;
+        background-color: white;
+        padding: 0 1rem;
+        border: 1px black solid;
+        height: 100%;
+        vertical-align: middle;
+    }
+
+    & > input[type="file"] {
+        display: none;
+    }
+
+    & > button {
+        border-radius: 0;
     }
 }

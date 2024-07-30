@@ -1,12 +1,15 @@
 import "./chat.css"
-import { withService, ServiceProps } from "../../services";
+import { withService, ServiceProps, withErrorHandling, ErrorProps, Services } from "../../services";
 import { useList } from "../../hooks/useList";
 import { Message } from "../../models/message";
 import MessageBubble from "./message";
 import { useState, Suspense, Fragment } from "react";
 import { LoadingMessage } from "../../shared";
+import { ErrorBoundary } from "react-error-boundary";
+import { Upload } from "./upload"
+import QueryInput from "./query_input";
 
-function Chat({interact, message_validation}: ServiceProps) {
+function Chat({ interact, message_validation }: ServiceProps) {
     const [ messages, addMessage ] = useList<Message>([])
     const [text, setText] = useState("")
 
