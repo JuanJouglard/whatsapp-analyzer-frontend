@@ -18,23 +18,19 @@ function Chat({interact, message_validation}: ServiceProps) {
     }
 
     return <div className="chat-container">
-            <ul className="message-list" aria-label="message-list">
-                {messages.map(( message:Message ) => <Fragment key={message.id}>
-                                  <MessageBubble message={message} />
-                                    <Suspense fallback={<LoadingMessage />}>
-                                      <MessageBubble is_response={true} message={message} />
-                                     </Suspense>
-                              </Fragment>)}
-            </ul>
-            <input
-                id="query-input"
-                type="text"
-                aria-label="query-input"
-                value={text}
-                onChange={(event) => setText(event.target.value)}
-                onKeyDown={onEnter}
-            />
+            <ErrorBoundary fallback={<p>Ups something went wrong...</p>}>
+                <Upload />
+                <ul className="message-list" aria-label="message-list">
+                    {messages.map(( message:Message ) => <Fragment key={message.id}>
+                                      <MessageBubble message={message} />
+                                        <Suspense fallback={<LoadingMessage />}>
+                                          <MessageBubble is_response={true} message={message} />
+                                         </Suspense>
+                                  </Fragment>)}
+                </ul>
+                <QueryInput sendQuery={onEnter} />
+            </ErrorBoundary>
         </div>
 }
 
-export default withService(Chat, ["interact", "message_validation"])
+export default withService(Chat, [Services.Interact, Services.MessageValidation])
