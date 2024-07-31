@@ -2,10 +2,12 @@ import { ComponentType } from "react"
 import { InjectableService } from "."
 import InteractService from "./interact"
 import MessageValidation from "./message_validation"
+import { FileHandler } from "./file_handler"
 
 export enum Services {
     Interact = "interact",
-    MessageValidation = "message_validation"
+    MessageValidation = "message_validation",
+    FileHandler = "file_handler"
 }
 
 type ServiceType = {
@@ -21,12 +23,18 @@ const services: ServiceType[] = [
     {
         "name": Services.MessageValidation,
         "Class": MessageValidation
-    }
+    },
+    {
+        "name": Services.FileHandler,
+        "Class": FileHandler
+    },
+
 ]
 
 export type ServiceProps = {
-    interact?: Readonly<InteractService>,
-    message_validation?: Readonly<MessageValidation>
+    [Services.Interact]?: Readonly<InteractService>,
+    [Services.MessageValidation]?: Readonly<MessageValidation>,
+    [Services.FileHandler]?: Readonly<FileHandler>
 }
 
 
