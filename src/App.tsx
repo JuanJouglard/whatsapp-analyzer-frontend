@@ -1,25 +1,13 @@
 import { lazy } from 'react';
 import './App.css';
-import Chat from './pages/home/chat';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import RouterProvider from "./router"
 
-const About =  lazy(() => import("./pages/about"))
 
-const router = createBrowserRouter([
-    {
-        path: "/about",
-        element: <About />
-    },
-    {
-        path: "/",
-        element: <Chat />
-    }
-])
 function App() {
 
   return (
     <div>
-        <RouterProvider router={router} />
+        <RouterProvider />
     </div>
   )
 }

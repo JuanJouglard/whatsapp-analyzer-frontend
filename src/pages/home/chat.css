@@ -1,5 +1,4 @@
 
-
 .chat-container {
     margin: 10vh auto;
     width: 30%;
@@ -95,4 +94,17 @@
     & > button {
         border-radius: 0;
     }
+}
+
+.message-date {
+    color: gray;
+    text-align: right;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }

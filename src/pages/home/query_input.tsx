@@ -17,7 +17,7 @@ export default function QueryInput({sendQuery} : QueryInputProps & ServiceProps)
         }
     }
 
-    return <div>
+    return <div className="input-container">
         <input onKeyDown={onEnter} type="text" onChange={event => setQuery(event.target.value)}/>
         <IconButton onClick={() => sendQuery(query)} variant="solid">
             <SendIcon />

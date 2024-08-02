@@ -3,7 +3,7 @@ import { withService, ServiceProps, withErrorHandling, ErrorProps, Services } fr
 import { useList } from "../../hooks/useList";
 import { Message } from "../../models/message";
 import MessageBubble from "./message";
-import { useState, Suspense, Fragment } from "react";
+import { Suspense, Fragment } from "react";
 import { LoadingMessage } from "../../shared";
 import { ErrorBoundary } from "react-error-boundary";
 import { Upload } from "./upload"
@@ -11,13 +11,10 @@ import QueryInput from "./query_input";
 
 function Chat({ interact, message_validation }: ServiceProps) {
     const [ messages, addMessage ] = useList<Message>([])
-    const [text, setText] = useState("")
 
-    const onEnter = async (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key == "Enter" && message_validation?.validate_user_message(text)) {
+    const sendQuery = (text: string) => {
+        if (message_validation?.validate_user_message(text))
             addMessage({ text , id: new Date().toISOString(), date: new Date(), response: interact?.sendQuery(text)})
-            setText("")
-        }
     }
 
     return <div className="chat-container">
@@ -31,7 +28,7 @@ function Chat({ interact, message_validation }: ServiceProps) {
                                          </Suspense>
                                   </Fragment>)}
                 </ul>
-                <QueryInput sendQuery={onEnter} />
+                <QueryInput sendQuery={sendQuery} />
             </ErrorBoundary>
         </div>
 }
