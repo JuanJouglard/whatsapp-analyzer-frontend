@@ -2,6 +2,7 @@ import { IconButton } from "@mui/joy"
 import SendIcon from '@mui/icons-material/Send';
 import { useState } from "react";
 import { ServiceProps, Services, withService } from "../../services";
+import { PRIMARY_COLOR, SECONDARY_COLOR, THIRD_COLOR } from "../../theme";
 
 type QueryInputProps = {
     sendQuery: Function
@@ -19,9 +20,7 @@ export default function QueryInput({sendQuery} : QueryInputProps & ServiceProps)
 
     return <div className="input-container">
         <input onKeyDown={onEnter} type="text" onChange={event => setQuery(event.target.value)}/>
-        <IconButton onClick={() => sendQuery(query)} variant="solid">
-            <SendIcon />
-        </IconButton>
+        <button className="send-button" style={{backgroundColor: THIRD_COLOR}} onClick={() => sendQuery(query)}>➤</button>
     </div>
 }
 

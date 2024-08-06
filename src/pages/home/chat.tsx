@@ -1,5 +1,5 @@
 import "./chat.css"
-import { withService, ServiceProps, withErrorHandling, ErrorProps, Services } from "../../services";
+import { withService, ServiceProps, Services } from "../../services";
 import { useList } from "../../hooks/useList";
 import { Message } from "../../models/message";
 import MessageBubble from "./message";

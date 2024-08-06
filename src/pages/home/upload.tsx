@@ -1,5 +1,6 @@
 import { Form } from 'react-router-dom';
 import { ChangeEvent, useState } from 'react';
+import { PRIMARY_COLOR, THIRD_COLOR } from '../../theme';
 
 export function Upload() {
     const [file, setFile] = useState<File>()
@@ -12,7 +13,7 @@ export function Upload() {
     return <Form encType="multipart/form-data" method="post" action="/chat" className="upload-form">
                 <label htmlFor="file_input">{file?.name || "Select file.."}</label>
                 <input name="file" accept=".txt" id="file_input" onChange={onChangeFile} type="file"/>
-                <button type="submit">Upload</button>
+                <button style={{backgroundColor: THIRD_COLOR}} type="submit">Upload</button>
         </Form>
 }
 

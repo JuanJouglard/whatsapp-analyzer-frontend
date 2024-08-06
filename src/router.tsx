@@ -1,8 +1,8 @@
 import { lazy } from 'react';
 import './App.css';
-import Chat from './pages/home/chat';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { FileHandler } from './services/file_handler';
+import Home from './pages/home';
 
 const About =  lazy(() => import("./pages/about"))
 
@@ -14,8 +14,8 @@ const router = createBrowserRouter([
         element: <About />
     },
     {
-        path: "/chat",
-        element: <Chat />,
+        path: "/home",
+        element: <Home />,
         action: async ({request}) => {
             const response = await file_service.upload(await request.formData())
             console.log("RESPONSE: ", response)
