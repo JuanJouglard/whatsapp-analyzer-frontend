@@ -3,11 +3,13 @@ import { InjectableService } from "."
 import InteractService from "./interact"
 import MessageValidation from "./message_validation"
 import { FileHandler } from "./file_handler"
+import MetricsServiceImplementation, { MetricsService } from "./metrics"
 
 export enum Services {
     Interact = "interact",
     MessageValidation = "message_validation",
-    FileHandler = "file_handler"
+    FileHandler = "file_handler",
+    Metrics = "metrics"
 }
 
 type ServiceType = {
@@ -28,6 +30,10 @@ const services: ServiceType[] = [
         "name": Services.FileHandler,
         "Class": FileHandler
     },
+    {
+        "name": Services.Metrics,
+        "Class": MetricsServiceImplementation
+    },
 
 ]
 
@@ -35,6 +41,7 @@ export type ServiceProps = {
     [Services.Interact]?: Readonly<InteractService>,
     [Services.MessageValidation]?: Readonly<MessageValidation>,
     [Services.FileHandler]?: Readonly<FileHandler>
+    [Services.Metrics]?: Readonly<MetricsService>
 }
 
 
