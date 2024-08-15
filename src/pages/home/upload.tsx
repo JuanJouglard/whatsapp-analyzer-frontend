@@ -10,7 +10,7 @@ export function Upload() {
             setFile(event.target.files[0])
     }
 
-    return <Form encType="multipart/form-data" method="post" action="/chat" className="upload-form">
+    return <Form encType="multipart/form-data" method="post" action="/home" className="upload-form">
                 <label htmlFor="file_input">{file?.name || "Select file.."}</label>
                 <input name="file" accept=".txt" id="file_input" onChange={onChangeFile} type="file"/>
                 <button style={{backgroundColor: THIRD_COLOR}} type="submit">Upload</button>
