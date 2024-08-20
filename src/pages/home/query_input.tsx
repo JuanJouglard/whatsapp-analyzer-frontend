@@ -1,8 +1,6 @@
-import { IconButton } from "@mui/joy"
-import SendIcon from '@mui/icons-material/Send';
 import { useState } from "react";
-import { ServiceProps, Services, withService } from "../../services";
-import { PRIMARY_COLOR, SECONDARY_COLOR, THIRD_COLOR } from "../../theme";
+import { ServiceProps } from "../../services";
+import { THIRD_COLOR } from "../../theme";
 
 type QueryInputProps = {
     sendQuery: Function
@@ -13,14 +11,21 @@ export default function QueryInput({sendQuery} : QueryInputProps & ServiceProps)
 
     const onEnter = async (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key == "Enter") {
-            sendQuery(query)
-            setQuery("")
+            sendAndClean(query)
         }
     }
 
+    const sendAndClean = (query:string) => {
+            sendQuery(query)
+            setQuery("")
+    }
+
     return <div className="input-container">
-        <input onKeyDown={onEnter} type="text" onChange={event => setQuery(event.target.value)}/>
-        <button className="send-button" style={{backgroundColor: THIRD_COLOR}} onClick={() => sendQuery(query)}>➤</button>
+        <input data-testid="query-input" value={query} onKeyDown={onEnter} type="text" onChange={event => setQuery(event.target.value)}/>
+        <button data-testid="send-button"
+                className="send-button"
+                style={{backgroundColor: THIRD_COLOR}}
+                onClick={() => sendAndClean(query)}>➤</button>
     </div>
 }
 

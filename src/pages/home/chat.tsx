@@ -5,7 +5,6 @@ import { Message } from "../../models/message";
 import MessageBubble from "./message";
 import { Suspense, Fragment } from "react";
 import { LoadingMessage } from "../../shared";
-import { ErrorBoundary } from "react-error-boundary";
 import { Upload } from "./upload"
 import QueryInput from "./query_input";
 
@@ -17,8 +16,8 @@ function Chat({ interact, message_validation }: ServiceProps) {
             addMessage({ text , id: new Date().toISOString(), date: new Date(), response: interact?.sendQuery(text)})
     }
 
+
     return <div className="chat-container">
-            <ErrorBoundary fallback={<p>Ups something went wrong...</p>}>
                 <Upload />
                 <ul className="message-list" aria-label="message-list">
                     {messages.map(( message:Message ) => <Fragment key={message.id}>
@@ -29,7 +28,6 @@ function Chat({ interact, message_validation }: ServiceProps) {
                                   </Fragment>)}
                 </ul>
                 <QueryInput sendQuery={sendQuery} />
-            </ErrorBoundary>
         </div>
 }
 

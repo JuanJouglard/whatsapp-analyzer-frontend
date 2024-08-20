@@ -8,8 +8,7 @@ export default class InteractService extends SuspendableService implements Injec
 
 
     private innerSendQuery(text: string): Promise<Message> {
-        console.log("TEXT: ", text)
-        return new Promise((resolve, _) => {
+        return new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve(
                     {
