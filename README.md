@@ -1,30 +1,11 @@
-# React + TypeScript + Vite
+Frontend application to access functionality from Whatsapp analyzer project.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Main project: https://github.com/JuanJouglard/WhatsappAnalyzer
 
-Currently, two official plugins are available:
+Built using React and react-router-dom
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Ability to upload conversations as txt file and later query them using a chat-like interface.
 
-## Expanding the ESLint configuration
+Show charts with metrics about the conversations using **recharts**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+![Screenshot from 2024-08-20 12-37-09](https://github.com/user-attachments/assets/390ab939-e09a-4f2a-a087-46b26a8420e1)
